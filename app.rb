@@ -9,7 +9,7 @@ class BootstrapArchiveApp < Sinatra::Base
     timestamp = params[:timestamp]
     channel = params[:channel_name]
     date = Date.today.strftime('%Y/%m/%d')
-    filename = File.expand_path(File.join('../..', 'shared', 'archive', channel, date, timestamp + '.' + params[:user_id] + '.json'), __FILE__)
+    filename = File.expand_path(File.join(ENV['ARCHIVE_DIR'], channel, date, timestamp + '.' + params[:user_id] + '.json'), __FILE__)
     puts "writing to filename #{filename}"
     FileUtils.mkdir_p(File.dirname(filename))
 
