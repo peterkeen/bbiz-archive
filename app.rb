@@ -5,7 +5,7 @@ require 'fileutils'
 
 class BootstrapArchiveApp < Sinatra::Base
   post '/_archive' do
-    return 'ok' unless params[:token] == ENV['SLACK_TOKEN']
+    return 'nok' unless params[:token] == ENV['SLACK_TOKEN']
     timestamp = params[:timestamp]
     channel = params[:channel_name]
     date = Date.today.strftime('%Y/%m/%d')
