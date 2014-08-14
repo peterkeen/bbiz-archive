@@ -1,0 +1,11 @@
+<div class="row">
+  <h1><%= @path %></h1>
+  <table role="table">
+    <% @posts.each do |post| %>
+      <tr>
+        <td><em><%= post['user_name'] %></em></td>
+        <td><%= post['text'] %></td>
+      </tr>
+    <% end %>
+  </ul>
+</div>

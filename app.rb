@@ -4,6 +4,19 @@ require 'json'
 require 'fileutils'
 
 class BootstrapArchiveApp < Sinatra::Base
+
+  get '/' do
+    @dirs = get_dirs
+    p @dirs
+    erb :index
+  end
+
+  get %r{/([a-z0-9_-]+/\d+/\d+/\d+)} do
+    @path = params[:captures].first
+    @posts = get_posts(@path)
+    erb :posts
+  end
+  
   post '/_archive' do
     return 'nok' unless params[:token] == ENV['SLACK_TOKEN']
     timestamp = params[:timestamp]
@@ -25,5 +38,22 @@ class BootstrapArchiveApp < Sinatra::Base
       }.to_json)
     end
     'ok'
+  end
+
+  def get_dirs
+    Dir.chdir(ENV['ARCHIVE_DIR']) do
+      Dir.glob('*/*/*/*').sort
+    end
+  end
+
+  def get_posts(path)
+    glob = File.join(ENV['ARCHIVE_DIR'], path, '*.json')
+    posts = []
+    Dir.glob(glob).sort.map do |filename|
+      File.open(filename, 'r:utf-8') do |f|
+        posts << JSON.parse(f.read)
+      end
+    end
+    posts
   end
 end

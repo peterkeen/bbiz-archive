@@ -1,0 +1,9 @@
+<h1>Index</h1>
+
+<div class="row">
+  <ul>
+    <% @dirs.each do |dir| %>
+      <li><a href="/<%= dir %>"><%= dir %></a></li>
+    <% end %>
+  </ul>
+</div>
