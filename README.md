@@ -8,7 +8,7 @@ Each message is stored as an individual timestamped json file on disk in datesta
 
 ## Developing
 
-This is unfortunately highly tied to my deployment infrastructure. You can of course run a dev server if you like. Adjust the variables in `.env` to suit your environment. `SLACK_TOKEN` is only used for receiving webhooks, so you shouldn't have to worry about it. Message me to get a dump of the archive to play around with.
+This is unfortunately highly tied to my deployment infrastructure. You can of course run a dev server if you like. Copy `.env.example` to `.env` and adjust the variables to suit your environment. `SLACK_TOKEN` is only used for receiving webhooks, so you shouldn't have to worry about it. Message me to get a dump of the archive to play around with.
 
 ## TODO
 
